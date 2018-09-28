@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import GridBodyColumn from "./gridBodyColumn";
 
-const GridRow = ({ rowId, columnIds, onDeleteRow }) => {
+const GridRow = ({ rowId, columnIds, onDeleteRow, onMoveUp, onMoveDown }) => {
   console.log("GridRow");
   return (
     <tr>
@@ -11,6 +11,12 @@ const GridRow = ({ rowId, columnIds, onDeleteRow }) => {
       ))}
       <td>
         <button onClick={() => onDeleteRow(rowId)}>Delete</button>
+      </td>
+      <td>
+        <button onClick={() => onMoveUp(rowId)}>Up</button>
+      </td>
+      <td>
+        <button onClick={() => onMoveDown(rowId)}>Down</button>
       </td>
     </tr>
   );
@@ -22,7 +28,9 @@ const mapStateToProps = ({ gridColumns }, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDeleteRow: id => dispatch({ type: "DELETE_ITEM", id })
+    onDeleteRow: id => dispatch({ type: "DELETE_ITEM", id }),
+    onMoveUp: id => dispatch({ type: "MOVE_UP", id }),
+    onMoveDown: id => dispatch({ type: "MOVE_DOWN", id })
   };
 };
 
