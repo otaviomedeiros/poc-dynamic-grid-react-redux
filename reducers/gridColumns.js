@@ -1,3 +1,8 @@
+import { move } from "../helpers";
+
+const moveLeft = (item, list) => move(item, list, index => index - 1);
+const moveRight = (item, list) => move(item, list, index => index + 1);
+
 const initialGridColumnsState = {
   ids: ["key", "name", "environment"],
   selectedIds: ["key", "name"],
@@ -30,6 +35,10 @@ export const gridColumns = (state = initialGridColumnsState, action = {}) => {
       } else {
         return { ...state, selectedIds: [...state.selectedIds, columnId] };
       }
+    case "MOVE_RIGHT":
+      return { ...state, selectedIds: moveRight(action.id, state.selectedIds) };
+    case "MOVE_LEFT":
+      return { ...state, selectedIds: moveLeft(action.id, state.selectedIds) };
   }
   return state;
 };

@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { move } from "../helpers";
 
 const testCaseList = _.range(30).map(index => ({
   key: `JQA-T${index}`,
@@ -8,18 +9,6 @@ const testCaseList = _.range(30).map(index => ({
 
 const moveUp = (item, list) => move(item, list, index => index - 1);
 const moveDown = (item, list) => move(item, list, index => index + 1);
-
-const move = (item, list, directionFn) => {
-  const reorderedList = [...list];
-  const index = reorderedList.indexOf(item);
-  const itemToMove = reorderedList[index];
-  const indexToMove = directionFn(index);
-
-  reorderedList[index] = reorderedList[indexToMove];
-  reorderedList[indexToMove] = itemToMove;
-
-  return reorderedList;
-};
 
 const byId = {};
 testCaseList.forEach(item => (byId[item.key] = item));
