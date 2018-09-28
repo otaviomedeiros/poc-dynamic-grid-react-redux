@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export const gridRows = (state = initialState, action = {}) => {
-  console.log(state);
+  console.log("current State: ", state);
   switch (action.type) {
     case "UPDATE_ITEM":
       const newState = {
@@ -25,7 +25,7 @@ export const gridRows = (state = initialState, action = {}) => {
           [action.id]: action.payload
         }
       };
-      console.log(newState);
+      console.log("newState: ", newState);
       return newState;
   }
   return state;

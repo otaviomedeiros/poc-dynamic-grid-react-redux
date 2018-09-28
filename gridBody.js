@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import GridRow from "./gridRow";
 
 const GridBody = ({ rowIds }) => {
+  console.log("GridBody");
   return (
     <tbody>
       {rowIds.map(rowId => (

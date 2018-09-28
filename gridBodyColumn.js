@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 const GridBodyColumn = ({ gridRow, gridColumn, onChange }) => {
+  console.log("GridBodyColumn: ", gridColumn.id);
   return (
     <td>
       <input

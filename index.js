@@ -9,7 +9,7 @@ import App from "./app";
 const rootReducer = combineReducers({ gridColumns, gridRows });
 
 const store = createStore(rootReducer);
-console.log(store.getState());
+console.log("Initial State: ", store.getState());
 ReactDOM.render(
   <Provider store={store}>
     <App />

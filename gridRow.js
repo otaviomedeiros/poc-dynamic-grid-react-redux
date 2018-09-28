@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import GridBodyColumn from "./gridBodyColumn";
 
 const GridRow = ({ rowId, columnIds }) => {
+  console.log("GridRow");
   return (
     <tr>
       {columnIds.map(columnId => (
@@ -13,7 +14,7 @@ const GridRow = ({ rowId, columnIds }) => {
 };
 
 const mapStateToProps = ({ gridColumns }, ownProps) => {
-  return { rowId: ownProps.rowId, columnIds: gridColumns.ids };
+  return { rowId: ownProps.rowId, columnIds: gridColumns.selectedIds };
 };
 
 export default connect(mapStateToProps)(GridRow);

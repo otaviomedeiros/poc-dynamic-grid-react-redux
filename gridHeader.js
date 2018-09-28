@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import GridHeaderColumn from "./gridHeaderColumn";
 
 const GridHeader = ({ columnIds }) => {
+  console.log("GridHeader");
   return (
     <thead>
       <tr>
@@ -15,7 +16,7 @@ const GridHeader = ({ columnIds }) => {
 };
 
 const mapStateToProps = ({ gridColumns }) => {
-  return { columnIds: gridColumns.ids };
+  return { columnIds: gridColumns.selectedIds };
 };
 
 export default connect(mapStateToProps)(GridHeader);
