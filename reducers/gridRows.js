@@ -27,6 +27,16 @@ export const gridRows = (state = initialState, action = {}) => {
       };
       console.log("newState: ", newState);
       return newState;
+    case "ADD_ITEM":
+      const newStateWithAddedItem = {
+        ids: [action.newItem.key, ...state.ids],
+        byId: {
+          ...state.byId,
+          [action.newItem.key]: action.newItem
+        }
+      };
+      console.log("newState: ", newStateWithAddedItem);
+      return newStateWithAddedItem;
   }
   return state;
 };
