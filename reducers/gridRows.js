@@ -37,6 +37,18 @@ export const gridRows = (state = initialState, action = {}) => {
       };
       console.log("newState: ", newStateWithAddedItem);
       return newStateWithAddedItem;
+
+    case "DELETE_ITEM":
+      const byId = state.byId;
+      delete byId[action.id];
+
+      const newStateWithDeletedItem = {
+        ids: state.ids.filter(id => id !== action.id),
+        byId
+      };
+
+      console.log("newState: ", newStateWithDeletedItem);
+      return newStateWithDeletedItem;
   }
   return state;
 };
