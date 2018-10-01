@@ -1,10 +1,10 @@
 {
-  "name": "poc-grid-react-redux",
+  "name": "poc-dynamic-grid-react-redux",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel -p 8080 index.html"
   },
   "keywords": [],
   "author": "",
