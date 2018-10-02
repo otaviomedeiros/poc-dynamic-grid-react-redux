@@ -12,7 +12,7 @@ And then run
 
 ## Grid data
 
-````
+```
 {
    "gridColumns":{
       "ids":[
@@ -81,5 +81,5 @@ And then run
          }
       }
    }
-}```
-````
+}
+```
