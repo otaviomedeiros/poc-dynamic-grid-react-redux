@@ -1,15 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-const GridBodyColumn = ({ gridRow, gridColumn, onChange }) => {
-  console.log("GridBodyColumn: ", gridColumn.id);
+const GridCell = ({ gridRow, gridColumn, onChange }) => {
+  console.log('GridCell: ', gridColumn.id);
   return (
     <td>
       <input
         defaultValue={gridRow[gridColumn.id]}
-        onChange={inputValue =>
-          onChange(gridRow, gridColumn, inputValue.target.value)
-        }
+        onChange={inputValue => onChange(gridRow, gridColumn, inputValue.target.value)}
       />
     </td>
   );
@@ -26,7 +24,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onChange: (gridRow, gridColumn, newValue) =>
       dispatch({
-        type: "UPDATE_ITEM",
+        type: 'UPDATE_ITEM',
         id: gridRow.key,
         payload: { ...gridRow, [gridColumn.id]: newValue }
       })
@@ -35,4 +33,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GridBodyColumn);
+)(GridCell);

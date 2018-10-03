@@ -1,13 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import GridBodyColumn from "./gridBodyColumn";
+import React from 'react';
+import { connect } from 'react-redux';
+import GridCell from './gridCell';
 
 const GridRow = ({ rowId, columnIds, onDeleteRow, onMoveUp, onMoveDown }) => {
-  console.log("GridRow");
+  console.log('GridRow');
   return (
     <tr>
       {columnIds.map(columnId => (
-        <GridBodyColumn key={columnId} columnId={columnId} rowId={rowId} />
+        <GridCell key={columnId} columnId={columnId} rowId={rowId} />
       ))}
       <td>
         <button onClick={() => onDeleteRow(rowId)}>Delete</button>
@@ -28,9 +28,9 @@ const mapStateToProps = ({ gridColumns }, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDeleteRow: id => dispatch({ type: "DELETE_ITEM", id }),
-    onMoveUp: id => dispatch({ type: "MOVE_UP", id }),
-    onMoveDown: id => dispatch({ type: "MOVE_DOWN", id })
+    onDeleteRow: id => dispatch({ type: 'DELETE_ITEM', id }),
+    onMoveUp: id => dispatch({ type: 'MOVE_UP', id }),
+    onMoveDown: id => dispatch({ type: 'MOVE_DOWN', id })
   };
 };
 
