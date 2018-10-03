@@ -1,10 +1,15 @@
-import _ from "lodash";
-import { move } from "../helpers";
+import _ from 'lodash';
+import { move } from '../helpers';
 
 const testCaseList = _.range(30).map(index => ({
   key: `JQA-T${index}`,
   name: `Test Case ${index}`,
-  environment: `Environment ${index}`
+  urlKey: `url-${index}`,
+  environmentId: 'chrome',
+  environmentList: [
+    { label: 'Firefox', value: 'firefox' },
+    { label: 'Google Chrome', value: 'chrome' }
+  ]
 }));
 
 const moveUp = (item, list) => move(item, list, index => index - 1);
@@ -20,15 +25,27 @@ const initialState = {
 
 export const gridRows = (state = initialState, action = {}) => {
   switch (action.type) {
-    case "UPDATE_ITEM":
+    case 'UPDATE_ITEM':
+      const { id, ...rest } = action.payload;
       return {
         ...state,
         byId: {
           ...state.byId,
-          [action.id]: action.payload
+          [id]: { ...state.byId[id], ...rest }
         }
       };
-    case "ADD_ITEM":
+    case 'BULK_UPDATE':
+      return {
+        ...state,
+        byId: state.ids.reduce((previous, current) => {
+          previous[current] = {
+            ...state.byId[current],
+            ...action.payload
+          };
+          return previous;
+        }, {})
+      };
+    case 'ADD_ITEM':
       return {
         ids: [action.newItem.key, ...state.ids],
         byId: {
@@ -36,7 +53,7 @@ export const gridRows = (state = initialState, action = {}) => {
           [action.newItem.key]: action.newItem
         }
       };
-    case "DELETE_ITEM":
+    case 'DELETE_ITEM':
       const byId = state.byId;
       delete byId[action.id];
 
@@ -44,9 +61,9 @@ export const gridRows = (state = initialState, action = {}) => {
         ids: state.ids.filter(id => id !== action.id),
         byId
       };
-    case "MOVE_UP":
+    case 'MOVE_UP':
       return { ...state, ids: moveUp(action.id, state.ids) };
-    case "MOVE_DOWN":
+    case 'MOVE_DOWN':
       return { ...state, ids: moveDown(action.id, state.ids) };
   }
   return state;
